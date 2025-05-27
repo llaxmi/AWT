@@ -156,3 +156,59 @@ git add .                // Stage changes for commit
 git commit -m "meaningful message"  //Save changes with a descriptive message
 git push origin main     // Upload your changes to GitHub
 ```
+
+
+## During migration
+
+### What is a migration?
+
+A migration is a change to the database schema. It's a way to update the structure of the database to keep it up-to-date with the application's needs.
+
+### Why do we need migrations?
+
+When we add new features or make changes to the database schema, we need to update the database to keep it in sync with the application. This is called a migration.
+
+### How do we create a migration?
+
+We use the Prisma CLI to create a migration. The CLI will generate a new migration file based on the changes we want to make to the database.
+
+To create a migration, we run the following command:
+
+```
+npx prisma migrate dev
+```
+
+This command will generate a new migration file in the `migrations` directory. The file will have a timestamp in its name, indicating when it was created.
+
+This command will apply the migration to the database and update the database schema accordingly.
+
+### How do we rollback a migration?
+
+If we make a mistake during the migration process, we can roll back to the previous version of the database. We can do this by running the following command:
+
+```
+npx prisma migrate reset
+```
+
+This command will roll back the migration to the previous version of the database.
+
+## Switching databases
+
+Prisma supports multiple databases, including PostgreSQL, MySQL, SQLite, MongoDB, and more. To switch databases, we need to update the `schema.prisma` file and set the `provider` property to the desired database.
+
+For example, to switch to MongoDB, we would update the `schema.prisma` file to look like this:
+
+```
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+```
+
+And then set the `DATABASE_URL` environment variable to the MongoDB connection string.
+
+then we have to run the following command:
+
+``` 
+npx prisma db push
+```
