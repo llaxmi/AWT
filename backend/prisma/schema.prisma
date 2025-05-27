@@ -10,12 +10,22 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id    Int  @id @default(autoincrement())
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
   name  String
   email String @unique
 }
+
+model Quotes {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  quote     String
+  author    String
+  createdAt DateTime @default(now())
+}
+
+
+ 
