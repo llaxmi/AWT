@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AWT - Quotes</title>
+  <link rel="stylesheet" href="./css/style.css">
+
+</head>
+<script src="./js/script.js" defer></script>
+
+<body>
+  <h1>Add your Quote</h1>
+  <form id="quoteForm">
+    <label for="author">Author:</label>
+    <input type="text" id="author" name="author" placeholder="Enter author name" required />
+    <label for="quote">Quote:</label>
+    <input type="text" id="quote" name="quote" placeholder="Enter the quote" required />
+    <button type="submit">Submit Quote</button>
+  </form>
+
+  <!-- Container for displaying response messages -->
+  <div id="responseMessage"></div>
+  <button id="quoteListButton" onclick="getQuotes()">View quotes</button>
+  <div id="quotes"></div>
+
+
+</body>
+
+</html>
