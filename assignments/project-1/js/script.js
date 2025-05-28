@@ -8,6 +8,7 @@ document
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData.entries());
     const messageDiv = document.getElementById("responseMessage");
+
     messageDiv.style.display = "block";
     messageDiv.textContent = "Submitting...";
 
@@ -39,12 +40,14 @@ document
         event.target.reset();
       } else {
         messageDiv.className = "error";
-        messageDiv.textContent = result.error || "Something went wrong.";
+        messageDiv.textContent =
+          result.error || "Error while submitting the quote.";
       }
     } catch (err) {
       // Handle network or other errors
       messageDiv.className = "error";
-      messageDiv.textContent = "Network error. Try again.";
+      messageDiv.textContent = "Failed to submit quote.";
+      console.error("Quote submission error:", err);
     }
   });
 
@@ -53,10 +56,9 @@ async function getQuotes() {
   try {
     const response = await fetch("http://localhost:3000/quotes");
     const data = await response.json();
-
     const quotesContainer = document.getElementById("quotes");
+
     quotesContainer.innerHTML = "";
-    //createdAt did not work
     data.forEach((quote) => {
       quotesContainer.appendChild(makeCard(quote));
     });
